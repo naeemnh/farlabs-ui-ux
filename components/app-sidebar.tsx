@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -15,6 +16,7 @@ import {
   // SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { Logo } from "./icons";
+import { NavUser } from "./nav-user";
 import { Separator } from "./ui/separator";
 
 // This is sample data.
@@ -75,8 +77,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         {data.navMain.map((group, index) => (
-          <>
-            <SidebarGroup key={group.title || "main"}>
+          <React.Fragment key={group.title || `main-${index}`}>
+            <SidebarGroup>
               {group.title ? (
                 <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
               ) : null}
@@ -101,9 +103,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </SidebarGroupContent>
             </SidebarGroup>
             {index < data.navMain.length - 1 && <Separator className="mx-auto w-[90%]! bg-gray-500" />}
-          </>
+          </React.Fragment>
         ))}
       </SidebarContent>
+      <SidebarFooter>
+        {/* TODO: Add version and Build date */}
+        <div className="flex flex-col gap-1 text-xs">
+          <span>xxxmorata</span>
+          <span>Operator Account</span>
+        </div>
+        {/* <NavUser user={{ name: "xxxmorata", email: "Operator Account", avatar: "https://github.com/shadcn.png" }} hideAvatar /> */}
+        <Separator className="bg-gray-500" />
+        <div className="flex flex-col items-center justify-between gap-2 text-xs text-gray-500">
+          {/* "version" and "build date" labeles should be on the left side the their respective values should be on the right side. */}
+            <div className="flex items-center w-full justify-between">
+              <span>Version</span>
+              <span>1.0.0</span>
+            </div>
+            <div className="flex items-center w-full justify-between">
+              <span>Build date</span>
+              <span>1 Feb, 2026</span>
+            </div>
+        </div>
+      </SidebarFooter>
       {/* <SidebarRail /> */}
     </Sidebar >
   );
