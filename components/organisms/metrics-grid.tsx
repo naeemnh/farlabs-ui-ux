@@ -3,9 +3,12 @@
 import * as React from "react"
 import { MetricCard } from "@/components/molecules/metric-card"
 import { useUptime } from "@/hooks/use-uptime"
+import { useNodeStatus } from "@/contexts/node-status-context"
 
 export function MetricsGrid() {
-  const sessionUptime = useUptime("10:20:00")
+  const { status, resetTrigger } = useNodeStatus()
+  const isPaused = status === "paused"
+  const sessionUptime = useUptime("10:20:00", isPaused, resetTrigger)
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
