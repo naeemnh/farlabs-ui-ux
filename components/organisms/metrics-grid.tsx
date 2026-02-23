@@ -1,11 +1,16 @@
+"use client"
+
 import * as React from "react"
 import { MetricCard } from "@/components/molecules/metric-card"
+import { useUptime } from "@/hooks/use-uptime"
 
 export function MetricsGrid() {
+  const sessionUptime = useUptime("10:20:00")
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <MetricCard
-        value="10:20:00"
+        value={sessionUptime}
         label="Session uptime"
         description="Resets when you restart the node"
       />
