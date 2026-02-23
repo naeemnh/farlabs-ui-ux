@@ -45,7 +45,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
               className="first:fill-gray-700 last:fill-card"
               polarRadius={[43, 36]}
             />
-            <RadialBar dataKey={label} background cornerRadius={10} />
+            <RadialBar dataKey={label} cornerRadius={10} />
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
               <Label
                 content={({ viewBox }) => {
