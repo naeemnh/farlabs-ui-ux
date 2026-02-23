@@ -11,36 +11,36 @@ import {
 
 // Sample data for 24 hours (jobs per hour)
 const chartData = [
-  { hour: "00:00", jobs: 95000 },
-  { hour: "01:00", jobs: 92000 },
-  { hour: "02:00", jobs: 90000 },
-  { hour: "03:00", jobs: 91000 },
-  { hour: "04:00", jobs: 93000 },
-  { hour: "05:00", jobs: 95000 },
-  { hour: "06:00", jobs: 98000 },
-  { hour: "07:00", jobs: 100000 },
-  { hour: "08:00", jobs: 102000 },
-  { hour: "09:00", jobs: 105000 },
-  { hour: "10:00", jobs: 108000 },
-  { hour: "11:00", jobs: 110000 },
-  { hour: "12:00", jobs: 112000 },
-  { hour: "13:00", jobs: 109000 },
-  { hour: "14:00", jobs: 107000 },
+  { hour: "00:00", jobs: 100000 },
+  { hour: "01:00", jobs: 100000 },
+  { hour: "02:00", jobs: 100000 },
+  { hour: "03:00", jobs: 100000 },
+  { hour: "04:00", jobs: 100000 },
+  { hour: "05:00", jobs: 100000 },
+  { hour: "06:00", jobs: 105500 },
+  { hour: "07:00", jobs: 111000 },
+  { hour: "08:00", jobs: 111000 },
+  { hour: "09:00", jobs: 111000 },
+  { hour: "10:00", jobs: 111000 },
+  { hour: "11:00", jobs: 111000 },
+  { hour: "12:00", jobs: 111000 },
+  { hour: "13:00", jobs: 111000 },
+  { hour: "14:00", jobs: 108000 },
   { hour: "15:00", jobs: 105000 },
-  { hour: "16:00", jobs: 103000 },
-  { hour: "17:00", jobs: 101000 },
-  { hour: "18:00", jobs: 104000 },
-  { hour: "19:00", jobs: 108000 },
-  { hour: "20:00", jobs: 112000 },
-  { hour: "21:00", jobs: 115000 },
-  { hour: "22:00", jobs: 118000 },
-  { hour: "23:00", jobs: 116000 },
+  { hour: "16:00", jobs: 105000 },
+  { hour: "17:00", jobs: 105000 },
+  { hour: "18:00", jobs: 105000 },
+  { hour: "19:00", jobs: 105000 },
+  { hour: "20:00", jobs: 105000 },
+  { hour: "21:00", jobs: 109000 },
+  { hour: "22:00", jobs: 113000 },
+  { hour: "23:00", jobs: 117000 },
 ]
 
 const chartConfig = {
   jobs: {
     label: "Jobs per hour",
-    color: "hsl(270, 70%, 60%)", // Purple color
+    color: "hsl(250, 100%, 59%)", // Purple color
   },
 } satisfies ChartConfig
 
@@ -87,18 +87,31 @@ export function JobsChart() {
                 return value.toString()
               }}
               domain={[88900, 118300]}
-              ticks={[88900, 100000, 110000, 118300]}
+              ticks={[88900, 96250, 103600, 110950, 118300]}
               className="text-white"
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dot" />}
             />
+            <defs>
+              <linearGradient id="fillJobs" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="0%"
+                  stopColor="var(--color-jobs)"
+                  stopOpacity={0.85}
+                />
+                <stop
+                  offset="100%"
+                  stopColor="var(--color-jobs)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+            </defs>
             <Area
               dataKey="jobs"
-              type="monotone"
-              fill="var(--color-jobs)"
-              fillOpacity={0.4}
+              type="linear"
+              fill="url(#fillJobs)"
               stroke="var(--color-jobs)"
               strokeWidth={2}
             />
