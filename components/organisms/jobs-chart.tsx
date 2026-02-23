@@ -40,7 +40,7 @@ const chartData = [
 const chartConfig = {
   jobs: {
     label: "Jobs per hour",
-    color: "hsl(250, 100%, 59%)", // Purple color
+    color: "hsl(263, 99%, 49%)", // farlabs blue
   },
 } satisfies ChartConfig
 
